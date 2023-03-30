@@ -1,0 +1,13 @@
+name: Trigger Actions from Button
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [button-click]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Actions from Button
+        run: echo "Actions triggered from button click"
