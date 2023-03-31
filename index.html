@@ -1,5 +1,11 @@
 <script>
-function triggerActions(tok) {
+function triggerActions(event) {
+  event.preventDefault()
+
+  const formData = new FormData(event.target)
+  const data = Object.fromEntries(formData.entries())
+  const tok = data.getElementById("tok").value;
+
   fetch('/.github/workflows/chat-http-trigger.yml/dispatches', {
     method: 'POST',
     headers: {
@@ -7,12 +13,17 @@ function triggerActions(tok) {
       'Accept': 'application/vnd.github.v3+json',
       'Authorization': tok
     },
-    body: JSON.stringify({event_type: 'button-click'})
+    body: JSON.stringify({
+        event_type: 'button-click',
+        client_payload: data
+    })
   })
 }
 </script>
 
-<form onSubmit="return triggerActions()">
+<form onSubmit="return triggerActions(event)">
+    <input type="text" name="name">
+    <input type="text" name="tok">
     <input type="submit" value="Submit">
 </form>
   
