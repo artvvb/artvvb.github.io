@@ -4,14 +4,13 @@ function triggerActions(event) {
 
   const formData = new FormData(event.target)
   const data = Object.fromEntries(formData.entries())
-  const tok = data.getElementById("tok").value;
 
   fetch('/.github/workflows/chat-http-trigger.yml/dispatches', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/vnd.github.v3+json',
-      'Authorization': tok
+      'Authorization': data.FormData.get("tok")
     },
     body: JSON.stringify({
         event_type: 'button-click',
