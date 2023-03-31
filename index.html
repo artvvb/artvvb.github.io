@@ -13,7 +13,7 @@ function triggerActions(event) {
       'Authorization': formData.get("tok")
     },
     body: JSON.stringify({
-        event_type: 'button-click',
+        event_type: 'form-submission',
         client_payload: data
     })
   })
