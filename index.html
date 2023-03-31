@@ -10,7 +10,7 @@ function triggerActions(event) {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/vnd.github.v3+json',
-      'Authorization': formData.get("tok")
+      'Authorization': 'Bearer ' + formData.get("tok")
     },
     body: JSON.stringify({
         event_type: 'form-submission',
