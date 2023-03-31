@@ -4,13 +4,13 @@ function triggerActions(event) {
 
   const formData = new FormData(event.target)
   const data = Object.fromEntries(formData.entries())
-
-  fetch('/.github/workflows/chat-http-trigger.yml/dispatches', {
+  
+  fetch('https://api.github.com/repos/artvvb/artvvb.github.io/dispatches', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/vnd.github.v3+json',
-      'Authorization': 'Bearer ' + formData.get("tok")
+      'Authorization': 'token ' + formData.get("tok")
     },
     body: JSON.stringify({
         event_type: 'form-submission',
