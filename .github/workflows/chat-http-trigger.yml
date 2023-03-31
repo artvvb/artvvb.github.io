@@ -1,4 +1,4 @@
-name: Trigger Actions from Button
+name: Trigger Actions from Form
 
 on:
   workflow_dispatch:
@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Actions from Form
-        run: echo "Actions triggered from button click"
+        run: echo "Name ${{ github.event.client_payload.name }} submitted from Pages"
